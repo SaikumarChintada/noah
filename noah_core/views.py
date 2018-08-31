@@ -1,11 +1,17 @@
 import json
 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.views import View
 from django.shortcuts import render
+# from django.contrib.auth.decorators import login_required
 
 from .utils.districts import DISTRICTS
+from noah_core.decorators import social_login_required
 from .models import ItemModel, DonationCommitmentModel
+
+@social_login_required
+def test_login_view(request):
+    return JsonResponse({'success': True})
 
 
 class InitView(View):

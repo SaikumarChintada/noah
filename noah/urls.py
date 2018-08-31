@@ -18,10 +18,15 @@ import os
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
+from django.conf.urls import url
 from django.conf import settings
+from django.contrib.auth import logout
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
     path('api/v1/', include('noah_core.urls')),
+    path('social/', include('social_django.urls')),
+    url(r'^accounts/', include('django.contrib.auth.urls')),
+
 ] + static("/", document_root=os.path.join(settings.BASE_DIR, "noah_frontend", "dist"))
